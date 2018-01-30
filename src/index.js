@@ -1,3 +1,4 @@
+const markerMaker = require('./marker')
 console.log("Hello from JavaScript");
 
 const mapboxgl = require("mapbox-gl");
@@ -10,3 +11,9 @@ const map = new mapboxgl.Map({
   zoom: 12, // starting zoom
   style: "mapbox://styles/mapbox/streets-v10" // mapbox has lots of different map styles available.
 });
+
+
+const marker = markerMaker.markerMaker("activity", [-74.009151, 40.705086]);
+marker.addTo(map);
+
+

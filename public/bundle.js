@@ -67,18 +67,10 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1);
-(function webpackMissingModule() { throw new Error("Cannot find module \"open\""); }());
-(function webpackMissingModule() { throw new Error("Cannot find module \"index.html\""); }());
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
+const markerMaker = __webpack_require__(2)
 console.log("Hello from JavaScript");
 
-const mapboxgl = __webpack_require__(2);
+const mapboxgl = __webpack_require__(1);
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYW5qaWVtZXJjaGFudCIsImEiOiJjamQxdHdyanoxa2RmMnpvNGc3NjAzZHV2In0.WxWbLVeEZjWn_76BY9YxzQ";
 
@@ -90,8 +82,14 @@ const map = new mapboxgl.Map({
 });
 
 
+const marker = markerMaker.markerMaker("activity", [-74.009151, 40.705086]);
+marker.addTo(map);
+
+
+
+
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;(function(f){if(true){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.mapboxgl = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return require(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
@@ -660,6 +658,45 @@ module.exports={"$version":8,"$root":{"version":{"required":true,"type":"enum","
 
 
 //# sourceMappingURL=mapbox-gl.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const mapboxgl = __webpack_require__(1);
+
+const markerMaker = (type, coordinates) => {
+  const markerDomEl = document.createElement('div');
+  markerDomEl.style.width = "32px";
+  markerDomEl.style.height = "39px";
+  if (type === "activity") {
+    markerDomEl.style.backgroundImage = "url(http://i.imgur.com/WbMOfMl.png)";
+  } else if (type === "hotel") {
+    markerDomEl.style.backgroundImage = "url(http://i.imgur.com/D9574Cu.png)";
+  } else if (type === "restaurant") {
+    markerDomEl.style.backgroundImage = "url(http://i.imgur.com/cqR6pUI.png)";
+  }
+  return new mapboxgl.Marker(markerDomEl).setLngLat(coordinates);
+}
+
+module.exports = {
+  markerMaker
+}
+
+/*
+// creating a dom element
+var markerDomEl = document.createElement('div');
+markerDomEl.classList.add('marker');
+// markerDomEl.style.width = "32px";
+// markerDomEl.style.height = "39px";
+// markerDomEl.style.backgroundImage = "url(http://i.imgur.com/WbMOfMl.png)";
+
+// pass the dom element as a parameter to the mapboxgl.Marker() constructor fxn.
+new mapboxgl.Marker(markerDomEl).setLngLat([-74.009151, 40.705086]).addTo(map);
+
+
+*/
+
 
 /***/ })
 /******/ ]);
