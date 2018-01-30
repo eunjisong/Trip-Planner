@@ -8,10 +8,21 @@
     background-color: #C1B5AD;
   }
 
-  #map {
-    height: 100vh;
-    width: 100vw;
+  .gheader {
+      width: 100vw; 
+      height: 5vh; 
+      background-color: olivedrab;
+      margin: 0px;
   }
+
+  h1 {
+      font-size: 50px; 
+      color: white;
+      font-variant: small-caps;
+      padding: 20px 20px;
+      margin: 0px; 
+  }
+
 
   .marker {
     background-image: url("http://i.imgur.com/WbMOfMl.png");
@@ -21,4 +32,20 @@
     border-radius: 50%;
     cursor: pointer;
   }
+  .container {
+      flex-direction: row;
+  }
 
+  #map {
+    height: 100vh;
+    flex-grow: ;
+}
+
+  .vertical-container {
+      flex-direction: column;
+  }
+
+  .sidebar {
+    flex-grow: 1;
+    height: 100vh;
+  }
